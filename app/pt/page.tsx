@@ -1,3 +1,10 @@
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: '이어진 포트폴리오 발표 | eojin.me',
+  description: '신입 프론트엔드 개발자 이어진의 10분 발표용 슬라이드',
+}
+
 export default function PresentationPage() {
   return (
     <main className="min-h-screen bg-black text-white">
