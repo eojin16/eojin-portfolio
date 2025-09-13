@@ -1,8 +1,13 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: '이어진 포트폴리오 발표 | eojin.me',
-  description: '신입 프론트엔드 개발자 이어진의 10분 발표용 슬라이드',
+  title: '이어진 포트폴리오 발표 슬라이드 | 10분 프레젠테이션',
+  description: '백엔드 개발자 이어진의 10분 발표용 슬라이드. 시스템 아키텍처, 프로젝트 경험, 기술 역량을 소개합니다.',
+  openGraph: {
+    title: '이어진 포트폴리오 발표 슬라이드',
+    description: '백엔드 개발자의 10분 프레젠테이션',
+    url: 'https://eojin.me/pt',
+  },
 }
 
 export default function PresentationPage() {

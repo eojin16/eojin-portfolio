@@ -8,6 +8,9 @@ export default function Navigation() {
             <a href="#about" className="hover:text-blue-600">About</a>
             <a href="#projects" className="hover:text-blue-600">Projects</a>
             <a href="#contact" className="hover:text-blue-600">Contact</a>
+            <a href="/pt" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+              발표 슬라이드
+            </a>
           </div>
         </div>
       </div>
