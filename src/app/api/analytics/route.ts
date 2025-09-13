@@ -23,7 +23,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   const body = await request.json()
-  const { page, userAgent } = body
+  const { page } = body
   const today = new Date().toISOString().split('T')[0]
   
   // 새로운 날이면 오늘 방문자 수 리셋

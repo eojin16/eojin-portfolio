@@ -69,7 +69,7 @@ export default function StatsDashboard() {
       <div className="bg-white p-6 rounded-lg shadow border">
         <h3 className="text-lg font-semibold mb-2 text-gray-700">인기 페이지</h3>
         <div className="space-y-2">
-          {stats.topPages.slice(0, 3).map((page, index) => (
+          {stats.topPages.slice(0, 3).map((page) => (
             <div key={page.page} className="flex justify-between text-sm">
               <span className="text-gray-600 truncate">{page.page}</span>
               <span className="text-blue-600 font-semibold">{page.count}</span>
