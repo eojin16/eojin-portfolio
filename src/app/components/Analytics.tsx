@@ -17,7 +17,6 @@ export default function Analytics() {
           },
           body: JSON.stringify({
             page: pathname,
-            userAgent: navigator.userAgent,
             timestamp: new Date().toISOString()
           })
         })
