@@ -1,52 +1,124 @@
 import { NextRequest, NextResponse } from 'next/server'
-
-// 임시 메모리 저장소 (실제로는 데이터베이스 사용)
-// eslint-disable-next-line prefer-const
-let analytics = {
-  totalVisitors: 0,
-  todayVisitors: 0,
-  pageViews: 0,
-  lastVisit: new Date().toISOString().split('T')[0], // YYYY-MM-DD 형식
-  topPages: {} as Record<string, number>
-}
+import { supabaseAdmin } from '@/lib/supabase'
 
 export async function GET() {
-  return NextResponse.json({
-    totalVisitors: analytics.totalVisitors,
-    todayVisitors: analytics.todayVisitors,
-    pageViews: analytics.pageViews,
-    topPages: Object.entries(analytics.topPages)
-      .sort(([,a], [,b]) => b - a)
+  try {
+    // 오늘 날짜
+    const today = new Date().toISOString().split('T')[0]
+
+    // 총 방문자 수 (고유 세션)
+    const { data: totalVisitorsData, error: totalError } = await supabaseAdmin
+      .from('analytics')
+      .select('session_id')
+      .not('session_id', 'is', null)
+
+    if (totalError) throw totalError
+
+    // 세션 ID로 중복 제거
+    const uniqueSessions = new Set(
+      totalVisitorsData?.map((item: any) => item.session_id) || []
+    )
+    const totalVisitors = uniqueSessions.size
+
+    // 오늘 방문자 수
+    const { data: todayVisitorsData, error: todayError } = await supabaseAdmin
+      .from('analytics')
+      .select('session_id')
+      .gte('created_at', `${today}T00:00:00.000Z`)
+      .lt('created_at', `${today}T23:59:59.999Z`)
+      .not('session_id', 'is', null)
+
+    if (todayError) throw todayError
+
+    const todayUniqueSessions = new Set(
+      todayVisitorsData?.map((item: any) => item.session_id) || []
+    )
+    const todayVisitors = todayUniqueSessions.size
+
+    // 총 페이지 뷰
+    const { count: pageViews, error: pageViewsError } = await supabaseAdmin
+      .from('analytics')
+      .select('*', { count: 'exact' })
+
+    if (pageViewsError) throw pageViewsError
+
+    // 인기 페이지
+    const { data: pagesData, error: pagesError } = await supabaseAdmin
+      .from('analytics')
+      .select('page_path')
+
+    if (pagesError) throw pagesError
+
+    // 페이지별 방문 횟수 계산
+    const pageCount = (pagesData || []).reduce((acc: Record<string, number>, item: any) => {
+      const page = item.page_path || '/'
+      acc[page] = (acc[page] || 0) + 1
+      return acc
+    }, {})
+
+    // 상위 5개 페이지
+    const topPages = Object.entries(pageCount)
+      .sort(([, a], [, b]) => (b as number) - (a as number))
       .slice(0, 5)
       .map(([page, count]) => ({ page, count }))
-  })
+
+    return NextResponse.json({
+      totalVisitors,
+      todayVisitors,
+      pageViews: pageViews || 0,
+      topPages
+    })
+  } catch (error) {
+    console.error('Analytics GET error:', error)
+    return NextResponse.json(
+      { error: 'Failed to fetch analytics' },
+      { status: 500 }
+    )
+  }
 }
 
 export async function POST(request: NextRequest) {
-  const body = await request.json()
-  const { page } = body
-  const today = new Date().toISOString().split('T')[0]
-  
-  // 새로운 날이면 오늘 방문자 수 리셋
-  if (analytics.lastVisit !== today) {
-    analytics.todayVisitors = 0
-    analytics.lastVisit = today
+  try {
+    const body = await request.json()
+    const { page, sessionId } = body
+
+    // IP 주소 가져오기
+    const ip = request.ip ||
+               request.headers.get('x-forwarded-for')?.split(',')[0] ||
+               request.headers.get('x-real-ip') ||
+               'unknown'
+
+    // User Agent 가져오기
+    const userAgent = request.headers.get('user-agent') || 'unknown'
+
+    // Referer 가져오기
+    const referer = request.headers.get('referer') || null
+
+    // 분석 데이터 저장
+    const { data, error } = await supabaseAdmin
+      .from('analytics')
+      .insert([
+        {
+          page_path: page || '/',
+          ip_address: ip,
+          user_agent: userAgent,
+          referrer: referer,
+          session_id: sessionId,
+          created_at: new Date().toISOString()
+        }
+      ])
+
+    if (error) throw error
+
+    return NextResponse.json({
+      success: true,
+      message: 'Analytics updated successfully'
+    })
+  } catch (error) {
+    console.error('Analytics POST error:', error)
+    return NextResponse.json(
+      { error: 'Failed to update analytics' },
+      { status: 500 }
+    )
   }
-  
-  // 통계 업데이트
-  analytics.totalVisitors += 1
-  analytics.todayVisitors += 1
-  analytics.pageViews += 1
-  
-  // 페이지별 방문 수 기록
-  if (analytics.topPages[page]) {
-    analytics.topPages[page] += 1
-  } else {
-    analytics.topPages[page] = 1
-  }
-  
-  return NextResponse.json({ 
-    success: true, 
-    message: 'Analytics updated' 
-  })
 }
