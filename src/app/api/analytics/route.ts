@@ -16,7 +16,7 @@ export async function GET() {
 
     // 세션 ID로 중복 제거
     const uniqueSessions = new Set(
-      totalVisitorsData?.map((item: any) => item.session_id) || []
+      totalVisitorsData?.map((item: { session_id: string }) => item.session_id) || []
     )
     const totalVisitors = uniqueSessions.size
 
@@ -31,7 +31,7 @@ export async function GET() {
     if (todayError) throw todayError
 
     const todayUniqueSessions = new Set(
-      todayVisitorsData?.map((item: any) => item.session_id) || []
+      todayVisitorsData?.map((item: { session_id: string }) => item.session_id) || []
     )
     const todayVisitors = todayUniqueSessions.size
 
@@ -50,7 +50,7 @@ export async function GET() {
     if (pagesError) throw pagesError
 
     // 페이지별 방문 횟수 계산
-    const pageCount = (pagesData || []).reduce((acc: Record<string, number>, item: any) => {
+    const pageCount = (pagesData || []).reduce((acc: Record<string, number>, item: { page_path: string }) => {
       const page = item.page_path || '/'
       acc[page] = (acc[page] || 0) + 1
       return acc
@@ -83,9 +83,9 @@ export async function POST(request: NextRequest) {
     const { page, sessionId } = body
 
     // IP 주소 가져오기
-    const ip = request.ip ||
-               request.headers.get('x-forwarded-for')?.split(',')[0] ||
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ||
                request.headers.get('x-real-ip') ||
+               request.headers.get('cf-connecting-ip') ||
                'unknown'
 
     // User Agent 가져오기
@@ -95,7 +95,7 @@ export async function POST(request: NextRequest) {
     const referer = request.headers.get('referer') || null
 
     // 분석 데이터 저장
-    const { data, error } = await supabaseAdmin
+    const { error } = await supabaseAdmin
       .from('analytics')
       .insert([
         {
