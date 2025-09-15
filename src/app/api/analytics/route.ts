@@ -66,7 +66,9 @@ export async function GET() {
       totalVisitors,
       todayVisitors,
       pageViews: pageViews || 0,
-      topPages
+      totalSessions: totalVisitors, // 세션 수는 방문자 수와 동일
+      topPages,
+      dailyStats: [] // 빈 배열로 초기화
     })
   } catch (error) {
     console.error('Analytics GET error:', error)

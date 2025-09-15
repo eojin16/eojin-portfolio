@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 
 interface AnalyticsData {
@@ -23,7 +23,7 @@ export default function StatsDashboard({ initialData }: StatsDashboardProps) {
   const [isUpdating, setIsUpdating] = useState(false) // 백그라운드 업데이트 상태
 
   // 통계 가져오기 함수
-  const fetchStats = async (showLoader = true) => {
+  const fetchStats = useCallback(async (showLoader = true) => {
     if (showLoader && !initialData) setLoading(true)
     setIsUpdating(true)
     
@@ -45,7 +45,7 @@ export default function StatsDashboard({ initialData }: StatsDashboardProps) {
       setLoading(false)
       setIsUpdating(false)
     }
-  }
+  }, [initialData])
 
   // 실시간 업데이트 설정 (백그라운드)
   useEffect(() => {
@@ -73,7 +73,7 @@ export default function StatsDashboard({ initialData }: StatsDashboardProps) {
       subscription.unsubscribe()
       clearInterval(interval)
     }
-  }, [initialData])
+  }, [initialData, fetchStats])
 
   // 초기 로딩 중일 때만 로딩 스피너 표시
   if (loading && !stats) {

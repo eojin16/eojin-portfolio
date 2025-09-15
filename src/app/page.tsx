@@ -7,27 +7,28 @@ export const metadata: Metadata = {
 }
 
 async function getInitialStats() {
-  try {
-    // 서버에서 미리 통계 가져오기
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/rpc/get_stats_summary`, {
-      headers: {
-        'apikey': process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!}`,
-        'Content-Type': 'application/json'
-      }
-    })
+  // 빌드 시점에는 API를 호출하지 않고 null 반환
+  if (process.env.NODE_ENV === 'development') {
+    try {
+      const response = await fetch('http://localhost:3000/api/analytics', {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
 
-    if (response.ok) {
-      return await response.json()
+      if (response.ok) {
+        return await response.json()
+      }
+    } catch (error) {
+      console.error('Failed to fetch initial stats:', error)
     }
-  } catch (error) {
-    console.error('Failed to fetch initial stats:', error)
   }
-  
+
   return null
 }
 
-export default function Home() {
+export default async function Home() {
+  const initialStats = await getInitialStats()
   return (
     <main className="min-h-screen p-8">
       {/* <div className="max-w-4xl mx-auto">
@@ -126,7 +127,7 @@ export default function Home() {
           <p className="text-center text-gray-600 mb-12">
             백엔드 API로 구축한 실시간 방문자 통계 시스템
           </p>
-          <StatsDashboard />
+          <StatsDashboard initialData={initialStats} />
           
           <div className="mt-8 text-center">
             <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm">
