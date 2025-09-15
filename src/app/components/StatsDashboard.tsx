@@ -1,7 +1,19 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
+
+// Supabase 조건부 import
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let supabase: any = null
+if (typeof window !== 'undefined' && process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const supabaseModule = require('@/lib/supabase')
+    supabase = supabaseModule.supabase
+  } catch (error) {
+    console.error('Failed to load Supabase:', error)
+  }
+}
 
 interface AnalyticsData {
   totalVisitors: number
@@ -32,12 +44,20 @@ export default function StatsDashboard({ initialData }: StatsDashboardProps) {
         // 캐시 정책 추가
         next: { revalidate: 30 } // 30초 캐시
       })
-      
-      if (!response.ok) throw new Error('Failed to fetch')
-      
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+
       const data = await response.json()
-      setStats(data)
-      setLastUpdate(new Date())
+
+      // 데이터 구조 검증
+      if (typeof data === 'object' && data !== null) {
+        setStats(data)
+        setLastUpdate(new Date())
+      } else {
+        throw new Error('Invalid data format received')
+      }
     } catch (error) {
       console.error('Failed to fetch stats:', error)
       // 에러 발생해도 기존 데이터는 유지
@@ -53,24 +73,40 @@ export default function StatsDashboard({ initialData }: StatsDashboardProps) {
       fetchStats() // 초기 데이터가 없을 때만 첫 로딩
     }
 
-    // Supabase 실시간 구독 (덜 빈번하게)
-    const subscription = supabase
-      .channel('analytics-changes')
-      .on('postgres_changes', {
-        event: 'INSERT',
-        schema: 'public',
-        table: 'analytics'
-      }, () => {
-        // 실시간 업데이트는 로딩 없이 백그라운드에서
-        fetchStats(false)
-      })
-      .subscribe()
+    // Supabase 실시간 구독 (에러 처리 추가)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let subscription: any = null
+    if (supabase) {
+      try {
+        subscription = supabase
+          .channel('analytics-changes')
+          .on('postgres_changes', {
+            event: 'INSERT',
+            schema: 'public',
+            table: 'analytics'
+          }, () => {
+            // 실시간 업데이트는 로딩 없이 백그라운드에서
+            fetchStats(false)
+          })
+          .subscribe()
+      } catch (error) {
+        console.error('Failed to subscribe to real-time updates:', error)
+      }
+    } else {
+      console.warn('Supabase not available, skipping real-time subscription')
+    }
 
     // 주기적 업데이트 (1분마다로 줄임)
     const interval = setInterval(() => fetchStats(false), 60000) // 60초
 
     return () => {
-      subscription.unsubscribe()
+      if (subscription) {
+        try {
+          subscription.unsubscribe()
+        } catch (error) {
+          console.error('Failed to unsubscribe:', error)
+        }
+      }
       clearInterval(interval)
     }
   }, [initialData, fetchStats])
@@ -129,7 +165,7 @@ export default function StatsDashboard({ initialData }: StatsDashboardProps) {
         
         <div className={`bg-white p-6 rounded-lg shadow border transition-opacity ${isUpdating ? 'opacity-75' : ''}`}>
           <h3 className="text-lg font-semibold mb-2 text-gray-700">세션 수</h3>
-          <div className="text-3xl font-bold text-orange-600">{stats.totalSessions.toLocaleString()}</div>
+          <div className="text-3xl font-bold text-orange-600">{(stats.totalSessions || 0).toLocaleString()}</div>
           <div className="text-sm text-gray-500">총 세션</div>
         </div>
       </div>
