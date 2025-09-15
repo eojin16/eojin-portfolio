@@ -104,7 +104,7 @@ export default async function Home() {
       {/* 개인 브랜딩 강화 */}
       <section className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-6xl font-bold mb-4">김어진</h1>
+          <h1 className="text-6xl font-bold mb-4">Eojin Kim</h1>
           <p className="text-2xl text-gray-600 mb-8">Natural Born Backend Engineer</p>
           <div className="flex gap-4 justify-center">
             <span className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Node.js 전문가</span>
@@ -149,16 +149,46 @@ export default async function Home() {
         <div className="max-w-4xl mx-auto px-8">
           <h2 className="text-3xl font-bold mb-12">Experience & Education</h2>
           <div className="space-y-8">
+
+            {/* 현재 - 백엔드 개발자 전환 */}
             <div className="border-l-4 border-blue-500 pl-6">
               <div className="text-sm text-gray-500">2025 - Present</div>
-              <h3 className="text-xl font-semibold">백엔드 개발자 지원</h3>
-              <p className="text-gray-600">확장 가능한 서버 아키텍처 설계 및 API 개발</p>
-              <div className="flex gap-2 mt-2">
+              <h3 className="text-xl font-semibold">백엔드 개발자 전환</h3>
+              <p className="text-gray-600">모던 백엔드 기술 스택 학습 및 포트폴리오 개발</p>
+              <div className="flex gap-2 mt-2 flex-wrap">
                 <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Node.js</span>
                 <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">PostgreSQL</span>
-                <span className="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">API 설계</span>
+                <span className="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Supabase</span>
+                <span className="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded">REST API</span>
               </div>
             </div>
+
+            {/* Kolon Benit 경력 */}
+            <div className="border-l-4 border-green-500 pl-6">
+              <div className="text-sm text-gray-500">2024.03 - 2025.09</div>
+              <h3 className="text-xl font-semibold">Kolon Benit · 솔루션 사업팀 주임</h3>
+              <p className="text-gray-600">IFRS 솔루션 개발 및 유지보수, 클라이언트 요구사항 분석 및 시스템 개선</p>
+              <div className="flex gap-2 mt-2 flex-wrap">
+                <span className="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">VB.NET</span>
+                <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">C#</span>
+                <span className="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">FPSpread</span>
+                <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">REST API</span>
+              </div>
+            </div>
+
+            {/* 고려대학교 학력 */}
+            <div className="border-l-4 border-red-500 pl-6">
+              <div className="text-sm text-gray-500">2019.03 - 2023.08</div>
+              <h3 className="text-xl font-semibold">고려대학교 컴퓨터학과</h3>
+              <p className="text-gray-600">학사 졸업 · 평점 3.60/4.5</p>
+              <div className="flex gap-2 mt-2 flex-wrap">
+                <span className="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">컴퓨터공학</span>
+                <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">자료구조</span>
+                <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">알고리즘</span>
+                <span className="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">데이터베이스</span>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -169,42 +199,43 @@ export default async function Home() {
           <h3 className="text-2xl font-bold mb-8 text-center">기술 스택</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-            {/* 서버 기술 */}
+            {/* 실무 경험 기술 */}
             <div className="bg-white p-6 rounded-lg shadow border">
-              <h4 className="text-lg font-semibold mb-4 text-gray-700">서버 기술</h4>
+              <h4 className="text-lg font-semibold mb-4 text-gray-700">실무 경험</h4>
               <div className="space-y-2">
-                <span className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Node.js</span>
-                <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm ml-2">Express.js</span>
-                <span className="inline-block bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Fastify</span>
+                <span className="inline-block bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">VB.NET</span>
+                <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm ml-2">C#</span>
+                <span className="inline-block bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">FPSpread</span>
+                <span className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">IFRS</span>
               </div>
             </div>
 
-            {/* 데이터베이스 */}
+            {/* 현재 학습 중 */}
             <div className="bg-white p-6 rounded-lg shadow border">
-              <h4 className="text-lg font-semibold mb-4 text-gray-700">데이터베이스</h4>
+              <h4 className="text-lg font-semibold mb-4 text-gray-700">현재 학습 중</h4>
               <div className="space-y-2">
-                <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">PostgreSQL</span>
-                <span className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm ml-2">Supabase</span>
-                <span className="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Redis</span>
+                <span className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Node.js</span>
+                <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm ml-2">PostgreSQL</span>
+                <span className="inline-block bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Supabase</span>
               </div>
             </div>
 
             {/* 클라우드 & 인프라 */}
             <div className="bg-white p-6 rounded-lg shadow border">
-              <h4 className="text-lg font-semibold mb-4 text-gray-700">클라우드 & 인프라</h4>
+              <h4 className="text-lg font-semibold mb-4 text-gray-700">클라우드 & 배포</h4>
               <div className="space-y-2">
                 <span className="inline-block bg-black text-white px-3 py-1 rounded-full text-sm">Vercel</span>
-                <span className="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm ml-2">AWS</span>
-                <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Docker</span>
+                <span className="inline-block bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm ml-2">Git</span>
+                <span className="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">GitHub</span>
               </div>
             </div>
 
-            {/* 개발 도구 */}
+            {/* 개발 언어 & 도구 */}
             <div className="bg-white p-6 rounded-lg shadow border">
-              <h4 className="text-lg font-semibold mb-4 text-gray-700">개발 도구</h4>
+              <h4 className="text-lg font-semibold mb-4 text-gray-700">개발 언어 & 도구</h4>
               <div className="space-y-2">
                 <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">TypeScript</span>
-                <span className="inline-block bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm ml-2">Git</span>
+                <span className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm ml-2">JavaScript</span>
                 <span className="inline-block bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">REST API</span>
               </div>
             </div>
@@ -241,7 +272,9 @@ export default async function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-xl font-semibold mb-4">Email</h3>
-              <p>eojin16@gmail.com</p>
+              <a href="mailto:eojin16@gmail.com" className="text-blue-400 hover:text-blue-300">
+                eojin16@gmail.com
+              </a>
             </div>
             <div>
               <h3 className="text-xl font-semibold mb-4">GitHub</h3>
@@ -251,7 +284,7 @@ export default async function Home() {
             </div>
             <div>
               <h3 className="text-xl font-semibold mb-4">LinkedIn</h3>
-              <a href="https://linkedin.com/in/yourprofile" className="text-blue-400 hover:text-blue-300">
+              <a href="https://www.linkedin.com/in/eojin-kim-432738253/" className="text-blue-400 hover:text-blue-300">
                 linkedin.com/in/eojin
               </a>
             </div>

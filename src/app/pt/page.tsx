@@ -1,10 +1,10 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: '이어진 포트폴리오 발표 슬라이드 | 10분 프레젠테이션',
-  description: '백엔드 개발자 이어진의 10분 발표용 슬라이드. 시스템 아키텍처, 프로젝트 경험, 기술 역량을 소개합니다.',
+  title: '포트폴리오 발표 슬라이드 | 10분 프레젠테이션',
+  description: '백엔드 개발자 김어진의 10분 발표용 슬라이드. 시스템 아키텍처, 프로젝트 경험, 기술 역량을 소개합니다.',
   openGraph: {
-    title: '이어진 포트폴리오 발표 슬라이드',
+    title: '김어진 포트폴리오 발표 슬라이드',
     description: '백엔드 개발자의 10분 프레젠테이션',
     url: 'https://eojin.me/pt',
   },
@@ -15,7 +15,7 @@ export default function PresentationPage() {
     <main className="min-h-screen bg-black text-white">
       <div className="container mx-auto px-4 py-8">
         <header className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">이어진 포트폴리오 발표</h1>
+          <h1 className="text-4xl font-bold mb-4">김어진 포트폴리오 발표</h1>
           <p className="text-xl text-gray-300">10분 발표용 슬라이드</p>
         </header>
 
@@ -90,7 +90,7 @@ export default function PresentationPage() {
 
         <footer className="text-center mt-12 pt-8 border-t border-gray-700">
           <p className="text-gray-400">
-            감사합니다 | eojin.me | 연락처: your-email@example.com
+            감사합니다 | eojin.me | 연락처: eojin16@gmail.com
           </p>
         </footer>
       </div>
