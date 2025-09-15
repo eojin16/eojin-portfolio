@@ -4,25 +4,25 @@ import Analytics from './components/Analytics'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: '이어진 | 백엔드 개발자 포트폴리오',
-  description: '확장 가능한 시스템을 구축하는 백엔드 엔지니어 이어진의 포트폴리오입니다. Node.js, PostgreSQL, API 설계 전문가.',
-  keywords: ['백엔드 개발자', '이어진', 'Node.js', 'PostgreSQL', 'API 개발', '포트폴리오'],
-  authors: [{ name: '이어진' }],
-  creator: '이어진',
-  publisher: '이어진',
+  title: '김어진 | 백엔드 개발자 포트폴리오',
+  description: '확장 가능한 시스템을 구축하는 백엔드 엔지니어 김어진의 포트폴리오입니다. Node.js, PostgreSQL, API 설계 전문가.',
+  keywords: ['백엔드 개발자', '김어진', 'Node.js', 'PostgreSQL', 'API 개발', '포트폴리오'],
+  authors: [{ name: '김어진' }],
+  creator: '김어진',
+  publisher: '김어진',
   
   // Open Graph (소셜 미디어 미리보기)
   openGraph: {
-    title: '이어진 | 백엔드 개발자 포트폴리오',
-    description: '확장 가능한 시스템을 구축하는 백엔드 엔지니어 이어진의 포트폴리오',
+    title: '김어진 | 백엔드 개발자 포트폴리오',
+    description: '확장 가능한 시스템을 구축하는 백엔드 엔지니어 김어진의 포트폴리오',
     url: 'https://eojin.me',
-    siteName: '이어진 포트폴리오',
+    siteName: '김어진 포트폴리오',
     images: [
       {
         url: 'https://eojin.me/og-image.jpg', // 이미지는 아래에서 만들 예정
         width: 1200,
         height: 630,
-        alt: '이어진 백엔드 개발자 포트폴리오',
+        alt: '김어진 백엔드 개발자 포트폴리오',
       },
     ],
     locale: 'ko_KR',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   // 트위터 카드
   twitter: {
     card: 'summary_large_image',
-    title: '이어진 | 백엔드 개발자 포트폴리오',
+    title: '김어진 | 백엔드 개발자 포트폴리오',
     description: '확장 가능한 시스템을 구축하는 백엔드 엔지니어',
     images: ['https://eojin.me/og-image.jpg'],
     creator: '@eojin16', // 트위터 계정이 있다면

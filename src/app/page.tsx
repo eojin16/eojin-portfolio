@@ -2,8 +2,8 @@ import { Metadata } from 'next'
 import StatsDashboard from './components/StatsDashboard'
 
 export const metadata: Metadata = {
-  title: '이어진 | 백엔드 개발자 포트폴리오 - 홈',
-  description: 'Node.js, PostgreSQL, API 설계 전문 백엔드 개발자 이어진의 포트폴리오. 실시간 분석 시스템과 확장 가능한 아키텍처 경험.',
+  title: '김어진 | 백엔드 개발자 포트폴리오 - 홈',
+  description: 'Node.js, PostgreSQL, API 설계 전문 백엔드 개발자 김어진의 포트폴리오. 실시간 분석 시스템과 확장 가능한 아키텍처 경험.',
 }
 
 async function getInitialStats() {
@@ -104,19 +104,11 @@ export default async function Home() {
       {/* 개인 브랜딩 강화 */}
       <section className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-6xl font-bold mb-4">이어진</h1>
-          <p className="text-2xl text-gray-600 mb-8">Natural Born Frontend Developer</p>
+          <h1 className="text-6xl font-bold mb-4">김어진</h1>
+          <p className="text-2xl text-gray-600 mb-8">Natural Born Backend Engineer</p>
           <div className="flex gap-4 justify-center">
-            <span className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full">React 전문가</span>
-            <span className="bg-green-100 text-green-800 px-4 py-2 rounded-full">UI/UX 열정가</span>
-          </div>
-          <div className="mt-12">
-            <a 
-              href="/pt" 
-              className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 text-lg font-semibold"
-            >
-              📊 발표 슬라이드 보기 (eojin.me/pt)
-            </a>
+            <span className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Node.js 전문가</span>
+            <span className="bg-green-100 text-green-800 px-4 py-2 rounded-full">API 설계 열정가</span>
           </div>
         </div>
       </section>
@@ -159,40 +151,65 @@ export default async function Home() {
           <div className="space-y-8">
             <div className="border-l-4 border-blue-500 pl-6">
               <div className="text-sm text-gray-500">2025 - Present</div>
-              <h3 className="text-xl font-semibold">프론트엔드 개발자 지원</h3>
-              <p className="text-gray-600">포트폴리오 개발 및 기술 스택 학습</p>
+              <h3 className="text-xl font-semibold">백엔드 개발자 지원</h3>
+              <p className="text-gray-600">확장 가능한 서버 아키텍처 설계 및 API 개발</p>
               <div className="flex gap-2 mt-2">
-                <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Next.js</span>
-                <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">React</span>
+                <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Node.js</span>
+                <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">PostgreSQL</span>
+                <span className="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">API 설계</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 프로그레스 바로 숙련도 표시 */}
+      {/* 백엔드 기술 스택 태그 방식 */}
       <section className="py-16">
-        <h3 className="text-2xl font-bold mb-8">기술 스택</h3>
-        <div className="space-y-6">
-          {[
-            { name: 'React', level: 85, color: 'blue' },
-            { name: 'Next.js', level: 80, color: 'green' },
-            { name: 'TypeScript', level: 75, color: 'purple' },
-            { name: 'Tailwind CSS', level: 90, color: 'cyan' }
-          ].map(skill => (
-            <div key={skill.name}>
-              <div className="flex justify-between mb-2">
-                <span className="font-medium">{skill.name}</span>
-                <span className="text-sm text-gray-600">{skill.level}%</span>
-              </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div 
-                  className={`bg-${skill.color}-500 h-2 rounded-full`}
-                  style={{ width: `${skill.level}%` }}
-                ></div>
+        <div className="max-w-4xl mx-auto px-8">
+          <h3 className="text-2xl font-bold mb-8 text-center">기술 스택</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            {/* 서버 기술 */}
+            <div className="bg-white p-6 rounded-lg shadow border">
+              <h4 className="text-lg font-semibold mb-4 text-gray-700">서버 기술</h4>
+              <div className="space-y-2">
+                <span className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Node.js</span>
+                <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm ml-2">Express.js</span>
+                <span className="inline-block bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Fastify</span>
               </div>
             </div>
-          ))}
+
+            {/* 데이터베이스 */}
+            <div className="bg-white p-6 rounded-lg shadow border">
+              <h4 className="text-lg font-semibold mb-4 text-gray-700">데이터베이스</h4>
+              <div className="space-y-2">
+                <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">PostgreSQL</span>
+                <span className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm ml-2">Supabase</span>
+                <span className="inline-block bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Redis</span>
+              </div>
+            </div>
+
+            {/* 클라우드 & 인프라 */}
+            <div className="bg-white p-6 rounded-lg shadow border">
+              <h4 className="text-lg font-semibold mb-4 text-gray-700">클라우드 & 인프라</h4>
+              <div className="space-y-2">
+                <span className="inline-block bg-black text-white px-3 py-1 rounded-full text-sm">Vercel</span>
+                <span className="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm ml-2">AWS</span>
+                <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Docker</span>
+              </div>
+            </div>
+
+            {/* 개발 도구 */}
+            <div className="bg-white p-6 rounded-lg shadow border">
+              <h4 className="text-lg font-semibold mb-4 text-gray-700">개발 도구</h4>
+              <div className="space-y-2">
+                <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">TypeScript</span>
+                <span className="inline-block bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm ml-2">Git</span>
+                <span className="inline-block bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">REST API</span>
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 
@@ -238,14 +255,6 @@ export default async function Home() {
                 linkedin.com/in/eojin
               </a>
             </div>
-          </div>
-          <div className="mt-12">
-            <a 
-              href="/pt" 
-              className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 text-lg font-semibold"
-            >
-              📊 발표 슬라이드 보기 (eojin.me/pt)
-            </a>
           </div>
         </div>
       </section>
