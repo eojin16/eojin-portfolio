@@ -6,6 +6,27 @@ export const metadata: Metadata = {
   description: 'Node.js, PostgreSQL, API 설계 전문 백엔드 개발자 이어진의 포트폴리오. 실시간 분석 시스템과 확장 가능한 아키텍처 경험.',
 }
 
+async function getInitialStats() {
+  try {
+    // 서버에서 미리 통계 가져오기
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/rpc/get_stats_summary`, {
+      headers: {
+        'apikey': process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!}`,
+        'Content-Type': 'application/json'
+      }
+    })
+
+    if (response.ok) {
+      return await response.json()
+    }
+  } catch (error) {
+    console.error('Failed to fetch initial stats:', error)
+  }
+  
+  return null
+}
+
 export default function Home() {
   return (
     <main className="min-h-screen p-8">
