@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import StatsDashboard from './components/StatsDashboard'
+import StatsDashboard from '@/components/StatsDashboard'
 
 export const metadata: Metadata = {
   title: '김어진 | 백엔드 개발자 포트폴리오 - 홈',
