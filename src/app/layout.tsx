@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
-import Navigation from './components/Navigation'
-import Analytics from './components/Analytics'
+import Navigation from '../components/Navigation'
+import Analytics from '../components/Analytics'
 import './globals.css'
 
 export const metadata: Metadata = {
