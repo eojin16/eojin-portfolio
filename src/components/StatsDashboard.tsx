@@ -97,7 +97,7 @@ export default function StatsDashboard({ initialData }: StatsDashboardProps) {
     }
 
     // 주기적 업데이트 (1분마다로 줄임)
-    const interval = setInterval(() => fetchStats(false), 60000) // 60초
+    const interval = setInterval(() => fetchStats(false), 5000) // 5초
 
     return () => {
       if (subscription) {

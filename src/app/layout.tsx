@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import Navigation from '../components/Navigation'
 import Analytics from '../components/Analytics'
+import VisitorTracker from '../components/VisitorTracker'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -67,6 +68,7 @@ export default function RootLayout({
         <Navigation />
         {children}
         <Analytics />
+        <VisitorTracker />
       </body>
     </html>
   )
