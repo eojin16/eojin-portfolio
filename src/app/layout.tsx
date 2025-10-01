@@ -1,5 +1,4 @@
 import { Metadata } from 'next'
-import Navigation from '../components/Navigation'
 import Analytics from '../components/Analytics'
 import VisitorTracker from '../components/VisitorTracker'
 import './globals.css'
@@ -65,7 +64,6 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <Navigation />
         {children}
         <Analytics />
         <VisitorTracker />
