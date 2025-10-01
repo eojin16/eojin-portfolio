@@ -126,7 +126,7 @@ export default function ResumePage() {
                 <li>• Git/Github - Version control and collaboration</li>
                 <li>• Jira, Confluence - Project management and documentation</li>
                 <li>• Linux system administration - Ubuntu 22.04 LTS</li>
-                <li>• SSL/TLS configuration - Let's Encrypt certificate setup</li>
+                <li>• SSL/TLS configuration - Lets Encrypt certificate setup</li>
               </ul>
             </div>
           </div>
@@ -271,7 +271,7 @@ export default function ResumePage() {
               </div>
               <div className="flex items-start gap-3">
                 <span className="font-semibold text-gray-700 min-w-24">Security:</span>
-                <span className="text-gray-600">HTTPS + Let's Encrypt SSL + Duck DNS</span>
+                <span className="text-gray-600">HTTPS + Lets Encrypt SSL + Duck DNS</span>
               </div>
             </div>
           </div>
