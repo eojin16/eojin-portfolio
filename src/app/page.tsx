@@ -1,298 +1,292 @@
-import { Metadata } from 'next'
-import StatsDashboard from '@/components/StatsDashboard'
+import React from 'react';
 
-export const metadata: Metadata = {
-  title: '김어진 | 백엔드 개발자 포트폴리오 - 홈',
-  description: 'Node.js, PostgreSQL, API 설계 전문 백엔드 개발자 김어진의 포트폴리오. 실시간 분석 시스템과 확장 가능한 아키텍처 경험.',
-}
-
-async function getInitialStats() {
-  // 빌드 시점에는 API를 호출하지 않고 null 반환
-  if (process.env.NODE_ENV === 'development') {
-    try {
-      const response = await fetch('http://localhost:3000/api/analytics', {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-
-      if (response.ok) {
-        return await response.json()
-      }
-    } catch (error) {
-      console.error('Failed to fetch initial stats:', error)
-    }
-  }
-
-  return null
-}
-
-export default async function Home() {
-  const initialStats = await getInitialStats()
+export default function ResumePage() {
   return (
-    <main className="min-h-screen p-8">
-      {/* <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-4">
-          안녕하세요, 어진입니다 👋
-        </h1>
-        <p className="text-xl text-gray-600 mb-8">
-          프론트엔드 개발자를 꿈꾸는 신입 개발자입니다.ff
-        </p>
-        
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold">기술 스택</h2>
-          <div className="flex gap-2">
-            <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded">React</span>
-            <span className="bg-green-100 text-green-800 px-3 py-1 rounded">Next.js</span>
-            <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded">TypeScript</span>
+    <div className="min-h-screen bg-white text-gray-900">
+      <div className="max-w-4xl mx-auto px-6 py-16">
+        {/* Header */}
+        <header className="mb-12">
+          <h1 className="text-4xl font-bold mb-2">Eojin Kim</h1>
+          <p className="text-xl text-gray-600 mb-4">Backend Engineer</p>
+          <div className="flex gap-4 text-sm">
+            <a href="mailto:eojin16@gmail.com" className="text-blue-600 hover:underline">eojin16@gmail.com</a>
+            <a href="https://github.com/eojin16" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">GitHub</a>
+            <a href="/dashboard" className="text-blue-600 hover:underline">Dashboard</a>
           </div>
-        </div>
-      </div>
+        </header>
 
-            {/* About 섹션 *//*}
-      <section id="about" className="min-h-screen p-8">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8">About Me</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* 좌측: 경력 타임라인 *//*}
-            <div className="space-y-8">
-              <h3 className="text-xl font-semibold mb-4">이력</h3>
-              <div className="border-l-4 border-blue-500 pl-6">
-                <div className="text-sm text-gray-500">2025 - Present</div>
-                <h3 className="text-xl font-semibold">프론트엔드 개발자 지원</h3>
-                <p className="text-gray-600">포트폴리오 개발 및 기술 스택 학습</p>
-                <div className="flex gap-2 mt-2">
-                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Next.js</span>
-                  <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">React</span>
+        {/* Curriculum vitae */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold mb-6 border-b-2 border-gray-200 pb-2">Curriculum vitae</h2>
+          
+          <ul className="space-y-6">
+            <li>
+              <div className="flex gap-2">
+                <span className="text-gray-500 whitespace-nowrap">2024 Mar - 2024 Sep</span>
+                <div>
+                  <a href="https://www.kolonbenit.com/" className="font-semibold hover:text-blue-600">코오롱베니트</a>
+                  <p className="text-gray-600 mt-1">솔루션사업팀 - 주임</p>
+                  <ul className="mt-2 space-y-1 text-gray-700 text-sm">
+                    <li>• IFRS 연결결산 솔루션 'BENITSIGMA' 개발 및 운영</li>
+                    <li>• VB.NET 기반 UI/UX 개선 및 업무 프로세스 최적화</li>
+                    <li>• Excel VBA 기반 '개별주석패키지', '연결주석패키지' 솔루션 개발</li>
+                    <li>• MSSQL 프로시저 개발로 연결재무제표 데이터 처리 자동화</li>
+                    <li>• Git/Github, Jira, Confluence를 활용한 형상관리 및 협업</li>
+                  </ul>
                 </div>
               </div>
-              
-              <div className="border-l-4 border-blue-500 pl-6">
-                <div className="text-sm text-gray-500">2025 - Present</div>
-                <h3 className="text-xl font-semibold">프론트엔드 개발자 지원2</h3>
-                <p className="text-gray-600">포트폴리오 개발 및 기술 스택 학습</p>
-                <div className="flex gap-2 mt-2">
-                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Next.js</span>
-                  <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">React</span>
+            </li>
+
+            <li>
+              <div className="flex gap-2">
+                <span className="text-gray-500 whitespace-nowrap">2023 Dec - 2024 Feb</span>
+                <div>
+                  <span className="font-semibold">코오롱베니트</span>
+                  <p className="text-gray-600 mt-1">IFRS사업팀 - 인턴</p>
+                  <ul className="mt-2 space-y-1 text-gray-700 text-sm">
+                    <li>• 대내외 회계솔루션 BENITSIGMA 운영 보조</li>
+                    <li>• 프로젝트 자료 정리, 사용자 가이드 작성, 회의록 관리</li>
+                    <li>• PMO(프로젝트 관리 지원) 업무 수행으로 정규직 전환</li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div className="flex gap-2">
+                <span className="text-gray-500 whitespace-nowrap">2023 Sep - 2023 Nov</span>
+                <div>
+                  <span className="font-semibold">고려대학교 산학협력단</span>
+                  <p className="text-gray-600 mt-1">기술사업화센터 - 연구원</p>
+                  <ul className="mt-2 space-y-1 text-gray-700 text-sm">
+                    <li>• 기업연계 청년기술전문인력 육성사업 참여</li>
+                    <li>• 기술사업화 대상 기업 발굴 및 기술 수요 조사</li>
+                    <li>• 유망 기술 이전 및 사업화 연계 자료 작성</li>
+                    <li>• 정부지원사업 분석 및 기술사업화 전략 수립 지원</li>
+                    <li>• 지식재산능력시험(IPAT) 민간자격 5급 취득</li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div className="flex gap-2">
+                <span className="text-gray-500 whitespace-nowrap">2020 Mar - 2024 Aug</span>
+                <div>
+                  <span className="font-semibold">Korea University, Seoul, Korea</span>
+                  <p className="text-gray-600 mt-1">Bachelor of Science in Computer Science</p>
+                  <ul className="mt-2 space-y-1 text-gray-700 text-sm">
+                    <li>• GPA: 3.6/4.5</li>
+                    <li>• Relevant Coursework: Data Structures, Algorithms, Database Systems</li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        {/* Technical Skills */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold mb-6 border-b-2 border-gray-200 pb-2">Technical Skills</h2>
+          
+          <div className="space-y-4">
+            <div>
+              <h3 className="font-semibold mb-2 flex items-center gap-2">
+                <span className="text-blue-600">Backend Development</span>
+                <span className="text-xs text-gray-500">Python, VB.NET, SQL</span>
+              </h3>
+              <ul className="text-sm text-gray-700 space-y-1 ml-4">
+                <li>• FastAPI, Python - RESTful API design and implementation</li>
+                <li>• VB.NET, .NET Framework - Enterprise solution development</li>
+                <li>• AWS EC2, RDS MySQL - Cloud infrastructure setup and management</li>
+                <li>• MSSQL - Stored procedures and database optimization</li>
+                <li>• Redis - In-memory caching and real-time data processing</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-2 flex items-center gap-2">
+                <span className="text-blue-600">Frontend Development</span>
+                <span className="text-xs text-gray-500">React, Next.js</span>
+              </h3>
+              <ul className="text-sm text-gray-700 space-y-1 ml-4">
+                <li>• Next.js 15, React 18 - Modern frontend development</li>
+                <li>• TypeScript, Tailwind CSS - Type-safe and responsive UI</li>
+                <li>• Vercel deployment - CI/CD pipeline setup</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-2 flex items-center gap-2">
+                <span className="text-blue-600">DevOps & Tools</span>
+                <span className="text-xs text-gray-500">AWS, Git, Jira</span>
+              </h3>
+              <ul className="text-sm text-gray-700 space-y-1 ml-4">
+                <li>• AWS EC2, RDS - Infrastructure provisioning and management</li>
+                <li>• Git/Github - Version control and collaboration</li>
+                <li>• Jira, Confluence - Project management and documentation</li>
+                <li>• Linux system administration - Ubuntu 22.04 LTS</li>
+                <li>• SSL/TLS configuration - Let's Encrypt certificate setup</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Activities & Projects */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold mb-6 border-b-2 border-gray-200 pb-2">Activities & Projects</h2>
+          
+          <div className="space-y-6 mb-8">
+            <div>
+              <div className="flex gap-2 items-start">
+                <span className="text-gray-500 whitespace-nowrap text-sm">2024 Sep - 2025 Feb</span>
+                <div>
+                  <h3 className="font-semibold">대웅제약 IFRS 구축 프로젝트</h3>
+                  <p className="text-sm text-gray-600">코오롱베니트 - 솔루션개발</p>
+                  <ul className="mt-2 space-y-1 text-gray-700 text-sm">
+                    <li>• Excel VBA 기반 '개별주석패키지' 개발 및 성능 최적화</li>
+                    <li>• 주석 업로드 및 조회 속도 개선, 연결주석 취합 자동화</li>
+                    <li>• DB 업로드 프로세스 고도화로 정확성 및 사용자 편의성 향상</li>
+                  </ul>
                 </div>
               </div>
             </div>
 
-            {/* 우측: 소개 및 관심 분야 *//*}
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-4">소개</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  웹 프론트엔드 개발에 관심이 많은 신입 개발자입니다.
-                  사용자 경험을 중시하며, 깔끔하고 효율적인 코드를 작성하려고 노력합니다.
-                </p>
+            <div>
+              <div className="flex gap-2 items-start">
+                <span className="text-gray-500 whitespace-nowrap text-sm">2024 Mar - 2024 May</span>
+                <div>
+                  <h3 className="font-semibold">BY4M스튜디오 연결회계 구축 프로젝트</h3>
+                  <p className="text-sm text-gray-600">코오롱베니트 - 솔루션개발</p>
+                  <ul className="mt-2 space-y-1 text-gray-700 text-sm">
+                    <li>• '월별 증감분 조회', '내부거래 자동생성 등록' 화면 신규 구축</li>
+                    <li>• MSSQL 프로시저 작성 및 VB 화면 연동으로 실시간 데이터 처리</li>
+                    <li>• 개별사 교육 진행 및 사용자 가이드 제공</li>
+                  </ul>
+                </div>
               </div>
+            </div>
 
-              <div>
-                <h3 className="text-xl font-semibold mb-4">관심 분야</h3>
-                <ul className="text-gray-600 space-y-2">
-                  <li>• React/Next.js 개발</li>
-                  <li>• UI/UX 디자인</li>
-                  <li>• 웹 성능 최적화</li>
-                </ul>
+            <div>
+              <div className="flex gap-2 items-start">
+                <span className="text-gray-500 whitespace-nowrap text-sm">2023 Jan - 2023 Jan</span>
+                <div>
+                  <h3 className="font-semibold">데이터베이스 연구실 인턴</h3>
+                  <p className="text-sm text-gray-600">고려대학교 - 학부생 인턴</p>
+                  <ul className="mt-2 space-y-1 text-gray-700 text-sm">
+                    <li>• 학부생 인턴 과제 수행</li>
+                    <li>• Node.js 기반 웹 데이터베이스 프론트엔드 개발</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex gap-2 items-start">
+                <span className="text-gray-500 whitespace-nowrap text-sm">2022 Jun - 2022 Aug</span>
+                <div>
+                  <h3 className="font-semibold">데이터청년캠퍼스</h3>
+                  <p className="text-sm text-gray-600">한국데이터산업진흥원 - 팀원</p>
+                  <ul className="mt-2 space-y-1 text-gray-700 text-sm">
+                    <li>• Python 데이터 분석 (NumPy, Pandas, Matplotlib)</li>
+                    <li>• 머신러닝 모델 학습 (Regression, Decision Tree, SVM, Clustering)</li>
+                    <li>• AI 인식 수어교육 프로그램 개발 프로젝트 수행</li>
+                    <li>• <a href="https://github.com/eojin16/Data-campus-2022-team_7" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section> */}
+        </section>
 
-      {/* 개인 브랜딩 강화 */}
-      <section className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-6xl font-bold mb-4">Eojin Kim</h1>
-          <p className="text-2xl text-gray-600 mb-8">Natural Born Backend Engineer</p>
-          <div className="flex gap-4 justify-center">
-            <span className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Node.js 전문가</span>
-            <span className="bg-green-100 text-green-800 px-4 py-2 rounded-full">API 설계 열정가</span>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-8">
-          <h2 className="text-3xl font-bold mb-8 text-center">🔥 실시간 웹사이트 분석</h2>
-          <p className="text-center text-gray-600 mb-12">
-            백엔드 API로 구축한 실시간 방문자 통계 시스템
-          </p>
-          <StatsDashboard initialData={initialStats} />
+        {/* Featured Projects */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold mb-6 border-b-2 border-gray-200 pb-2">Featured Works</h2>
           
-          <div className="mt-8 text-center">
-            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm">
-              <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
-              실시간 업데이트 중
-            </div>
-          </div>
-          
-          <div className="mt-8 text-center">
-            <a 
-              href="/api/analytics" 
-              target="_blank"
-              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 text-sm"
-            >
-              📊 API 엔드포인트 확인하기 
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </section>
-
-
-      {/* 연도별 타임라인 */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-8">
-          <h2 className="text-3xl font-bold mb-12">Experience & Education</h2>
           <div className="space-y-8">
-
-            {/* 현재 - 백엔드 개발자 전환 */}
-            <div className="border-l-4 border-blue-500 pl-6">
-              <div className="text-sm text-gray-500">2025 - Present</div>
-              <h3 className="text-xl font-semibold">백엔드 개발자 전환</h3>
-              <p className="text-gray-600">모던 백엔드 기술 스택 학습 및 포트폴리오 개발</p>
-              <div className="flex gap-2 mt-2 flex-wrap">
-                <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Node.js</span>
-                <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">PostgreSQL</span>
-                <span className="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Supabase</span>
-                <span className="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded">REST API</span>
-              </div>
-            </div>
-
-            {/* Kolon Benit 경력 */}
-            <div className="border-l-4 border-green-500 pl-6">
-              <div className="text-sm text-gray-500">2024.03 - 2025.09</div>
-              <h3 className="text-xl font-semibold">Kolon Benit · 솔루션 사업팀 주임</h3>
-              <p className="text-gray-600">IFRS 솔루션 개발 및 유지보수, 클라이언트 요구사항 분석 및 시스템 개선</p>
-              <div className="flex gap-2 mt-2 flex-wrap">
-                <span className="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">VB.NET</span>
-                <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">C#</span>
-                <span className="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">FPSpread</span>
-                <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">REST API</span>
-              </div>
-            </div>
-
-            {/* 고려대학교 학력 */}
-            <div className="border-l-4 border-red-500 pl-6">
-              <div className="text-sm text-gray-500">2019.03 - 2023.08</div>
-              <h3 className="text-xl font-semibold">고려대학교 컴퓨터학과</h3>
-              <p className="text-gray-600">학사 졸업 · 평점 3.60/4.5</p>
-              <div className="flex gap-2 mt-2 flex-wrap">
-                <span className="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">컴퓨터공학</span>
-                <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">자료구조</span>
-                <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">알고리즘</span>
-                <span className="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">데이터베이스</span>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 백엔드 기술 스택 태그 방식 */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-8">
-          <h3 className="text-2xl font-bold mb-8 text-center">기술 스택</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-            {/* 실무 경험 기술 */}
-            <div className="bg-white p-6 rounded-lg shadow border">
-              <h4 className="text-lg font-semibold mb-4 text-gray-700">실무 경험</h4>
-              <div className="space-y-2">
-                <span className="inline-block bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">VB.NET</span>
-                <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm ml-2">C#</span>
-                <span className="inline-block bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">FPSpread</span>
-                <span className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">IFRS</span>
-              </div>
-            </div>
-
-            {/* 현재 학습 중 */}
-            <div className="bg-white p-6 rounded-lg shadow border">
-              <h4 className="text-lg font-semibold mb-4 text-gray-700">현재 학습 중</h4>
-              <div className="space-y-2">
-                <span className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Node.js</span>
-                <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm ml-2">PostgreSQL</span>
-                <span className="inline-block bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Supabase</span>
-              </div>
-            </div>
-
-            {/* 클라우드 & 인프라 */}
-            <div className="bg-white p-6 rounded-lg shadow border">
-              <h4 className="text-lg font-semibold mb-4 text-gray-700">클라우드 & 배포</h4>
-              <div className="space-y-2">
-                <span className="inline-block bg-black text-white px-3 py-1 rounded-full text-sm">Vercel</span>
-                <span className="inline-block bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm ml-2">Git</span>
-                <span className="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">GitHub</span>
-              </div>
-            </div>
-
-            {/* 개발 언어 & 도구 */}
-            <div className="bg-white p-6 rounded-lg shadow border">
-              <h4 className="text-lg font-semibold mb-4 text-gray-700">개발 언어 & 도구</h4>
-              <div className="space-y-2">
-                <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">TypeScript</span>
-                <span className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm ml-2">JavaScript</span>
-                <span className="inline-block bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">REST API</span>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 수치로 보여주는 성과 */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">프로젝트 성과</h2>
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div className="bg-white p-6 rounded-lg shadow">
-              <div className="text-3xl font-bold text-blue-600 mb-2">3+</div>
-              <div className="text-gray-600">완성된 웹 프로젝트</div>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow">
-              <div className="text-3xl font-bold text-green-600 mb-2">95%</div>
-              <div className="text-gray-600">사용자 만족도</div>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow">
-              <div className="text-3xl font-bold text-purple-600 mb-2">24/7</div>
-              <div className="text-gray-600">서비스 가용성</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 연락처 섹션 */}
-      <section className="py-16 bg-gray-900 text-white">
-        <div className="max-w-4xl mx-auto px-8 text-center">
-          <h2 className="text-3xl font-bold mb-8">Contact & Links</h2>
-          <div className="grid md:grid-cols-3 gap-8">
             <div>
-              <h3 className="text-xl font-semibold mb-4">Email</h3>
-              <a href="mailto:eojin16@gmail.com" className="text-blue-400 hover:text-blue-300">
-                eojin16@gmail.com
-              </a>
+              <h3 className="text-xl font-semibold mb-2">
+                <a href="https://eojin.me" className="hover:text-blue-600">Portfolio Website with Real-time Analytics</a>
+              </h3>
+              <p className="text-sm text-gray-500 mb-3">FastAPI, Next.js, AWS, Redis, MySQL</p>
+              <p className="text-gray-700 mb-3">
+                Full-stack portfolio website featuring real-time visitor analytics and caching optimization
+              </p>
+              <ul className="text-sm text-gray-700 space-y-1 ml-4">
+                <li>• Architected microservices with AWS EC2 + RDS MySQL backend</li>
+                <li>• Implemented Redis caching layer reducing API response time from 300ms to 50ms</li>
+                <li>• Built real-time dashboard with automatic visitor tracking</li>
+                <li>• Configured HTTPS with custom domain and SSL certificates</li>
+              </ul>
+              <div className="mt-3 flex gap-2">
+                <a href="https://github.com/eojin16/eojin-portfolio" className="text-sm text-blue-600 hover:underline">Frontend</a>
+                <span className="text-gray-400">•</span>
+                <a href="https://github.com/eojin16/eojin-portfolio-backend" className="text-sm text-blue-600 hover:underline">Backend</a>
+                <span className="text-gray-400">•</span>
+                <a href="https://eojin.me/dashboard" className="text-sm text-blue-600 hover:underline">Live Dashboard</a>
+              </div>
             </div>
+
             <div>
-              <h3 className="text-xl font-semibold mb-4">GitHub</h3>
-              <a href="https://github.com/eojin16" className="text-blue-400 hover:text-blue-300">
-                github.com/eojin16
-              </a>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-4">LinkedIn</h3>
-              <a href="https://www.linkedin.com/in/eojin-kim-432738253/" className="text-blue-400 hover:text-blue-300">
-                linkedin.com/in/eojin
-              </a>
+              <h3 className="text-xl font-semibold mb-2">
+                <a href="https://github.com/eojin16/Data-campus-2022-team_7" className="hover:text-blue-600" target="_blank" rel="noopener noreferrer">AI 인식 수어교육 프로그램</a>
+              </h3>
+              <p className="text-sm text-gray-500 mb-3">Python, Machine Learning, Computer Vision</p>
+              <p className="text-gray-700 mb-3">
+                AI 기반 수화 인식 시스템 개발 및 머신러닝 모델 학습
+              </p>
+              <ul className="text-sm text-gray-700 space-y-1 ml-4">
+                <li>• 데이터 분석 및 전처리 (NumPy, Pandas)</li>
+                <li>• 지도학습 모델 구현 (Regression, Decision Tree, SVM)</li>
+                <li>• 비지도학습 클러스터링 및 차원 축소 (K-Means, PCA)</li>
+                <li>• 하이퍼파라미터 튜닝 및 교차검증으로 모델 최적화</li>
+              </ul>
+              <div className="mt-3">
+                <a href="https://github.com/eojin16/Data-campus-2022-team_7" className="text-sm text-blue-600 hover:underline">GitHub Repository</a>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
+        {/* System Architecture */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold mb-6 border-b-2 border-gray-200 pb-2">System Architecture</h2>
+          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
+            <div className="space-y-3 text-sm">
+              <div className="flex items-start gap-3">
+                <span className="font-semibold text-gray-700 min-w-24">Frontend:</span>
+                <span className="text-gray-600">Next.js 15 + Vercel CDN (eojin.me)</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="font-semibold text-gray-700 min-w-24">Backend:</span>
+                <span className="text-gray-600">FastAPI + AWS EC2 + Nginx</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="font-semibold text-gray-700 min-w-24">Database:</span>
+                <span className="text-gray-600">AWS RDS MySQL (persistent storage)</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="font-semibold text-gray-700 min-w-24">Cache:</span>
+                <span className="text-gray-600">Redis (30s TTL, 6x faster response)</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="font-semibold text-gray-700 min-w-24">Security:</span>
+                <span className="text-gray-600">HTTPS + Let's Encrypt SSL + Duck DNS</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
-    </main>
-  )
+        {/* Footer */}
+        <footer className="text-center text-sm text-gray-500 pt-8 border-t border-gray-200">
+          <p>© 2024 Eojin. Backend Engineer Portfolio</p>
+          <p className="mt-2">
+            <a href="https://github.com/eojin16" className="hover:text-blue-600">GitHub</a>
+            {' • '}
+            <a href="/dashboard" className="hover:text-blue-600">Analytics Dashboard</a>
+          </p>
+        </footer>
+      </div>
+    </div>
+  );
 }
