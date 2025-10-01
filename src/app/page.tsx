@@ -27,9 +27,9 @@ export default function ResumePage() {
                   <a href="https://www.kolonbenit.com/" className="font-semibold hover:text-blue-600">코오롱베니트</a>
                   <p className="text-gray-600 mt-1">솔루션사업팀 - 주임</p>
                   <ul className="mt-2 space-y-1 text-gray-700 text-sm">
-                    <li>• IFRS 연결결산 솔루션 'BENITSIGMA' 개발 및 운영</li>
+                    <li>• IFRS 연결결산 솔루션 &apos;BENITSIGMA&apos; 개발 및 운영</li>
                     <li>• VB.NET 기반 UI/UX 개선 및 업무 프로세스 최적화</li>
-                    <li>• Excel VBA 기반 '개별주석패키지', '연결주석패키지' 솔루션 개발</li>
+                    <li>• Excel VBA 기반 &apos;개별주석패키지&apos;, &apos;연결주석패키지&apos; 솔루션 개발</li>
                     <li>• MSSQL 프로시저 개발로 연결재무제표 데이터 처리 자동화</li>
                     <li>• Git/Github, Jira, Confluence를 활용한 형상관리 및 협업</li>
                   </ul>
@@ -144,7 +144,7 @@ export default function ResumePage() {
                   <h3 className="font-semibold">대웅제약 IFRS 구축 프로젝트</h3>
                   <p className="text-sm text-gray-600">코오롱베니트 - 솔루션개발</p>
                   <ul className="mt-2 space-y-1 text-gray-700 text-sm">
-                    <li>• Excel VBA 기반 '개별주석패키지' 개발 및 성능 최적화</li>
+                    <li>• Excel VBA 기반 &apos;개별주석패키지&apos; 개발 및 성능 최적화</li>
                     <li>• 주석 업로드 및 조회 속도 개선, 연결주석 취합 자동화</li>
                     <li>• DB 업로드 프로세스 고도화로 정확성 및 사용자 편의성 향상</li>
                   </ul>
@@ -159,7 +159,7 @@ export default function ResumePage() {
                   <h3 className="font-semibold">BY4M스튜디오 연결회계 구축 프로젝트</h3>
                   <p className="text-sm text-gray-600">코오롱베니트 - 솔루션개발</p>
                   <ul className="mt-2 space-y-1 text-gray-700 text-sm">
-                    <li>• '월별 증감분 조회', '내부거래 자동생성 등록' 화면 신규 구축</li>
+                    <li>• &apos;월별 증감분 조회&apos;, &apos;내부거래 자동생성 등록&apos; 화면 신규 구축</li>
                     <li>• MSSQL 프로시저 작성 및 VB 화면 연동으로 실시간 데이터 처리</li>
                     <li>• 개별사 교육 진행 및 사용자 가이드 제공</li>
                   </ul>
