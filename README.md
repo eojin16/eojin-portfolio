@@ -360,7 +360,6 @@ CREATE TABLE daily_stats (
 - [Vercel](https://vercel.com/) - 배포 플랫폼
 - [Supabase](https://supabase.com/) - 백엔드 서비스
 - [Tailwind CSS](https://tailwindcss.com/) - CSS 프레임워크
-- Claude AI - 개발 지원
 
 ---
 
